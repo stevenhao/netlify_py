@@ -1,4 +1,4 @@
-# netlify-py
+# netlify_py
 
 A python client for creating, managing and deploying sites to Netlify using the [Netlify API](https://open-api.netlify.com/).
 
@@ -9,10 +9,10 @@ For more info refer the official documentation at [Netlify](https://docs.netlify
 
 ## Quick start
 
-1. Install netlify-py
+1. Install netlify_py
 
     ```
-    pip install netlify-py (yet to be published)
+    pip install netlify_py (yet to be published)
     ```
 
 2. Create an instance by passing [personal access token](https://app.netlify.com/user/applications#personal-access-tokens)
