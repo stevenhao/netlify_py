@@ -153,12 +153,15 @@ class Deploys(ApiBase):
         upload_files = {}
         for root, _, files in os.walk(deploy_dir):
             for file_name in files:
-                rel_dir = os.path.relpath(root, deploy_dir)
-                rel_file = os.path.join(rel_dir, file_name)
-                full_path = os.path.join(root, file_name)
-                sha1 = hashlib.sha1()
-                with open(full_path, 'rb') as file:
-                    with mmap.mmap(file.fileno(), 0, prot=mmap.PROT_READ) as memory_map:
-                        sha1.update(memory_map)
-                upload_files[rel_file.lstrip('./')] = sha1.hexdigest()
+                try:
+                    rel_dir = os.path.relpath(root, deploy_dir)
+                    rel_file = os.path.join(rel_dir, file_name)
+                    full_path = os.path.join(root, file_name)
+                    sha1 = hashlib.sha1()
+                    with open(full_path, 'rb') as file:
+                        with mmap.mmap(file.fileno(), 0, prot=mmap.PROT_READ) as memory_map:
+                            sha1.update(memory_map)
+                    upload_files[rel_file.lstrip('./')] = sha1.hexdigest()\
+                except Exception as e:
+                    print("Error processing file", file_name)
         return {"files": upload_files}
