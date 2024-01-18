@@ -161,7 +161,7 @@ class Deploys(ApiBase):
                     with open(full_path, 'rb') as file:
                         with mmap.mmap(file.fileno(), 0, prot=mmap.PROT_READ) as memory_map:
                             sha1.update(memory_map)
-                    upload_files[rel_file.lstrip('./')] = sha1.hexdigest()\
+                    upload_files[rel_file.lstrip('./')] = sha1.hexdigest()
                 except Exception as e:
                     print("Error processing file", file_name)
         return {"files": upload_files}
