@@ -163,5 +163,7 @@ class Deploys(ApiBase):
                             sha1.update(memory_map)
                     upload_files[rel_file.lstrip('./')] = sha1.hexdigest()
                 except Exception as e:
-                    print("Error processing file", file_name)
+                    print("Error processing file", file_name, e)
+                    import traceback
+                    traceback.print_exc()
         return {"files": upload_files}
